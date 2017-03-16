@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for your order</h1>
+    <% @cart_total = 0 %>
+        <% @carts.each do |product_id, quantity| %>
+          <%= render 'item', product_id: product_id, quantity: quantity %>
+        <h2></h2>
+        <% end %>
+    <h3>Total: <%=@cart_total%></h3>
+  </body>
+</html>

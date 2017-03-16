@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @carts = LineItem.where(order_id: params[:id]).pluck(:product_id, :quantity)
+    EmailOrder.email_user(@carts).deliver
   end
 
   def create
