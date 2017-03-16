@@ -36,7 +36,7 @@
       </tfoot>
     </table>
   </div>
-
+  <% if current_user %>
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -53,6 +53,9 @@
       <% end %>
     </div>
   </div>
+  <%else%>
+  <h3>Please log in to checkout </h3>
+  <% end %>
   <% else %>
   <%= link_to "Add some stuff!", root_path, class: 'btn btn-lg btn-primary' %>
   <h2>Your cart is empty </h2>
