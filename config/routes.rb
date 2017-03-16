@@ -6,12 +6,13 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create]
   end
   resources :categories, only: [:show]
-  post '/products/:product_id/reviews' => 'reviews#create'
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+
+  resources :signup, :controller => "users", only: [:index]
+  resource :users, :controller => "users", only: [:create]
+
+  resources :login, :controller => "sessions", only: [:create, :index]
+
+  resource :logout, :controller => "sessions", only: [:destroy]
 
   resource :cart, only: [:show] do
     put    :add_item
