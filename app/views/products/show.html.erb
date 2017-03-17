@@ -23,7 +23,7 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
         </dl>
-        <% @reviews.each do |id, product_id, user_id, description, rating| %>
+        <% @reviews.reverse_each do |id, product_id, user_id, description, rating| %>
         <% user_name = User.find(user_id)%>
         <div class="panel panel-default">
           <div class="panel-heading">
