@@ -10,4 +10,16 @@ class Product < ActiveRecord::Base
   validates :quantity, presence: true
   validates :category, presence: true
 
+  def get_average(id)
+    @reviews = Review.where(product_id: id).pluck(:rating)
+    if !@reviews.any?
+      return "No Rating"
+    end
+    average = 0
+    @reviews.each do |review|
+      average += review
+    end
+    "#{average / @reviews.size} / 5"
+  end
+
 end

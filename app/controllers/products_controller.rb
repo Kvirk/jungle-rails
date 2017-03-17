@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @average = 0;
     @review = Review.new
     @product = Product.find params[:id]
     @reviews = Review.where(product_id: params[:id]).pluck(:id, :product_id, :user_id, :description, :rating)
