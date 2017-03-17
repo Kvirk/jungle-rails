@@ -134,6 +134,7 @@ cat3.products.create!({
 
 User.create!({
   name: 'Hello',
+  last_name: 'There',
   email: 'hello@hello.com',
   password: 'test'
 })
