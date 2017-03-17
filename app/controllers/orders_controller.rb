@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @carts = LineItem.where(order_id: params[:id]).pluck(:product_id, :quantity)
-    EmailOrder.email_user(@carts).deliver
   end
 
   def create
@@ -32,12 +31,13 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_total, # in cents
-      description: "Khurram Virani's Jungle Order",
+      description: "Jungle Order",
       currency:    'cad'
     )
   end
 
   def create_order(stripe_charge)
+    @carts = LineItem.where(order_id: params[:id]).pluck(:product_id, :quantity)
     order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_total,
@@ -55,6 +55,7 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+    EmailOrder.email_user(params[:stripeEmail], @carts).deliver
     order
   end
 

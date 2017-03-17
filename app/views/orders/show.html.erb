@@ -6,6 +6,9 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <% if current_user %>
+    <h4>Email sent to <%=@order.email%></h4>
+    <% end %>
       <% @cart_total = 0 %>
         <% @carts.each do |product_id, quantity| %>
           <%= render 'item', product_id: product_id, quantity: quantity %>
