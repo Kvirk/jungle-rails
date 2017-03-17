@@ -3,6 +3,6 @@ class EmailOrder < ApplicationMailer
 
   def email_user(email)
     @carts = email
-    mail(to: 'burner_kirat@mail.com', subject: 'Youf Order')
+    mail(to: 'burner_kirat@mail.com', subject: 'Your Order')
   end
 end

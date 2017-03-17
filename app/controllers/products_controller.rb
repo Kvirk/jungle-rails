@@ -6,8 +6,7 @@ class ProductsController < ApplicationController
   def show
     @review = Review.new
     @product = Product.find params[:id]
-    puts "\n\n\n\n\n\n\n"
-    @reviews = Review.where(product_id: params[:id]).pluck(:user_id, :description, :rating)
+    @reviews = Review.where(product_id: params[:id]).pluck(:id, :product_id, :user_id, :description, :rating)
   end
 
 end
