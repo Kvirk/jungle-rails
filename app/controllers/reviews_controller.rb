@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review.rating = review_params[:rating].to_i
 
     if @review.save
-      redirect_to "/products/#{params[:product_id]}"
+      redirect_to product_path(id: params[:product_id])
     else
       render :login
     end
@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to "/products/#{params[:product_id]}"
+    redirect_to product_path(id: params[:product_id])
   end
 
   def authorize
