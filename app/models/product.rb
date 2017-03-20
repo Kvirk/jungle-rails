@@ -15,11 +15,11 @@ class Product < ActiveRecord::Base
     if !@reviews.any?
       return "No Rating"
     end
-    average = 0
+    average = 0.0
     @reviews.each do |review|
       average += review
     end
-    "#{average / @reviews.size} / 5"
+    "#{(average / @reviews.size).round(2)}"
   end
 
 end
