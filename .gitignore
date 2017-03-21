@@ -7,10 +7,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
-/tmp
-
-# Ignore carrier wave uploads for development
-/public/uploads
+/tmps
 
 # Ignore db creds / settings
 /config/database.yml
