@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   mount_uploader :image, ProductImageUploader
 
   belongs_to :category
-
+  has_many :review
   validates :name, presence: true
   validates :price, presence: true
   validates :quantity, presence: true
@@ -21,6 +21,10 @@ class Product < ActiveRecord::Base
       average += review
     end
     "#{(average / @reviews.size).round(2)}"
+  end
+
+  def sold_out?
+    quantity == 0
   end
 
   private

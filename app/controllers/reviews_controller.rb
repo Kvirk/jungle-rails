@@ -1,11 +1,14 @@
 class ReviewsController < ApplicationController
   before_filter :authorize
+
   def create
     @review = Review.new
-    @review.product_id = params[:product_id].to_i
-    @review.user_id = session[:user_id]
-    @review.description = review_params[:description]
-    @review.rating = review_params[:rating].to_i
+
+    # Load the parent resource (incase you have rules)
+    @product = Product.find(params[:product_id])
+    @review = @product.review.new(review_params)
+
+    @review.user = current_user
 
     if @review.save
       redirect_to product_path(id: params[:product_id])
@@ -20,13 +23,6 @@ class ReviewsController < ApplicationController
     redirect_to product_path(id: params[:product_id])
   end
 
-  def authorize
-    if session[:user_id]
-      return true
-    end
-    false
-  end
-
   private
 
   def review_params
@@ -34,5 +30,12 @@ class ReviewsController < ApplicationController
       :description,
       :rating
     )
+  end
+
+  def authorize
+    if session[:user_id]
+      return true
+    end
+    false
   end
 end

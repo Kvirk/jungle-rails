@@ -7,6 +7,7 @@
   </header>
   <p class="description">
     <%= product.description %>
+    'cart/items/new'
   </p>
   <footer class="actions">
     <h4> <%= product.get_average(product.id) %></h4>
@@ -17,7 +18,7 @@
       Details &raquo;
     <% end %>
   </footer>
-  <% if product.quantity == 0 -%>
+  <% if product.sold_out? -%>
     <aside class="soldout">
       Sold Out!
     </aside>
