@@ -9,7 +9,6 @@ class ReviewsController < ApplicationController
     @review = @product.review.new(review_params)
 
     @review.user = current_user
-
     if @review.save
       redirect_to product_path(id: params[:product_id])
     else
@@ -33,7 +32,7 @@ class ReviewsController < ApplicationController
   end
 
   def authorize
-    if session[:user_id]
+    if current_user.id
       return true
     end
     false
