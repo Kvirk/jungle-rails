@@ -137,6 +137,7 @@ User.create!({
   last_name: 'There',
   email: 'hello@hello.com',
   password: 'test'
+  password_confirmation: "test"
 })
 
 Review.create!({
