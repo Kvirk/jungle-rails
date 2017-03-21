@@ -136,7 +136,7 @@ User.create!({
   name: 'Hello',
   last_name: 'There',
   email: 'hello@hello.com',
-  password: 'test'
+  password: 'test',
   password_confirmation: "test"
 })
 
